@@ -13,6 +13,35 @@ from playwright.async_api import async_playwright
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/form_student')
+def form_student():
+    return render_template('form_student.html')
+
+@app.route('/form_employer')
+def form_employer():
+    return render_template('form_employer.html')
+@app.route('/admin_student_list')
+def admin_student_list():
+    return render_template('admin_student_list.html')
+
+@app.route('/admin_employer_list')
+def admin_employer_list():
+    return render_template('admin_employer_list.html')
+@app.route('/admin_student_detail')
+def admin_student_detail():
+    return render_template('admin_student_detail.html')
+
+@app.route('/admin_employer_detail')
+def admin_employer_detail():
+    return render_template('admin_employer_detail.html')
+@app.route('/preview')
+def preview():
+    return render_template('preview.html')
+
 DB_CONFIG = {
     "host": "127.0.0.1",
     "user": "aacsb_user",
@@ -35,7 +64,7 @@ def home():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 5050))
     app.run(host='0.0.0.0', port=port)
 # ============================================================
 # A) 學生問卷 Student
