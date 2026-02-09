@@ -6,6 +6,7 @@ import mysql.connector
 import json
 import io
 import asyncio
+import os
 
 # 用 Chromium 列印 PDF（保留 detail 排版）
 from playwright.async_api import async_playwright
@@ -33,6 +34,9 @@ def home():
     return render_template("index.html")
 
 
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
 # ============================================================
 # A) 學生問卷 Student
 # ============================================================
