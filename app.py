@@ -62,11 +62,11 @@ DB_CONFIG = {
 # =========================
 def get_conn():
     return pymysql.connect(
-        host=os.environ.get("DB_HOST"),
-        port=int(os.environ.get("DB_PORT", 29744)),
-        user=os.environ.get("DB_USER"),
-        password=os.environ.get("DB_PASSWORD"),
-        database=os.environ.get("DB_NAME"),
+        host=os.environ.get("MYSQL_HOST"),
+        port=int(os.environ.get("MYSQL_PORT", 29744)),
+        user=os.environ.get("MYSQL_USERNAME"),
+        password=os.environ.get("MYSQL_PASSWORD"),
+        database=os.environ.get("MYSQL_DATABASE"),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor
     )
