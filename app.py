@@ -52,29 +52,33 @@ DB_CONFIG = {
     "charset": "utf8mb4",
     "collation": "utf8mb4_unicode_ci",
 }
-def get_conn():
-    return mysql.connector.connect(**DB_CONFIG)
+
 
 """
-conn = pymysql.connect(
-    host=os.environ.get("DB_HOST"),
-    port=int(os.environ.get("DB_PORT", 3306)),
-    user=os.environ.get("DB_USER"),
-    password=os.environ.get("DB_PASSWORD"),
-    database=os.environ.get("DB_NAME"),
-    charset="utf8mb4"
-)
 
 
-
+# =========================
+# 資料庫連線（Zeabur 環境變數）
+# =========================
+def get_conn():
+    return pymysql.connect(
+        host=os.environ.get("DB_HOST"),
+        port=int(os.environ.get("DB_PORT", 29744)),
+        user=os.environ.get("DB_USER"),
+        password=os.environ.get("DB_PASSWORD"),
+        database=os.environ.get("DB_NAME"),
+        charset="utf8mb4",
+        cursorclass=pymysql.cursors.DictCursor
+    )
 
 # =========================
 # Home
 # =========================
+"""
 @app.get("/")
 def home():
     return render_template("index.html")
-
+"""
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5050))
@@ -588,5 +592,9 @@ def admin_employer_export_pdf():
     )
 
 
+# =========================
+# Zeabur 必備啟動設定
+# =========================
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
