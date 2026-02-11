@@ -7,6 +7,7 @@ import json
 import io
 import asyncio
 import os
+import pymysql
 
 # 用 Chromium 列印 PDF（保留 detail 排版）
 from playwright.async_api import async_playwright
@@ -42,17 +43,29 @@ def admin_employer_detail():
 def preview():
     return render_template('preview.html')
 
+"""
 DB_CONFIG = {
     "host": "127.0.0.1",
-    "user": "aacsb_user",
-    "password": "password",
+    "user": "root", #aacsb_user
+    "password": "LS34CQuWxZi5nM102zAbXhoP968avB7D", #password
     "database": "aacsb",
     "charset": "utf8mb4",
     "collation": "utf8mb4_unicode_ci",
 }
-
 def get_conn():
     return mysql.connector.connect(**DB_CONFIG)
+
+"""
+conn = pymysql.connect(
+    host=os.environ.get("DB_HOST"),
+    port=int(os.environ.get("DB_PORT", 3306)),
+    user=os.environ.get("DB_USER"),
+    password=os.environ.get("DB_PASSWORD"),
+    database=os.environ.get("DB_NAME"),
+    charset="utf8mb4"
+)
+
+
 
 
 # =========================
