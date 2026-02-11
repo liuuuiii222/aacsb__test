@@ -13,7 +13,7 @@ import pymysql
 from playwright.async_api import async_playwright
 
 app = Flask(__name__)
-"""
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -42,7 +42,7 @@ def admin_employer_detail():
 @app.route('/preview')
 def preview():
     return render_template('preview.html')
-"""
+
 """
 DB_CONFIG = {
     "host": "127.0.0.1",
