@@ -13,7 +13,7 @@ import pymysql
 from playwright.async_api import async_playwright
 
 app = Flask(__name__)
-
+"""
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -42,7 +42,7 @@ def admin_employer_detail():
 @app.route('/preview')
 def preview():
     return render_template('preview.html')
-
+"""
 """
 DB_CONFIG = {
     "host": "127.0.0.1",
@@ -74,11 +74,11 @@ def get_conn():
 # =========================
 # Home
 # =========================
-"""
+
 @app.get("/")
 def home():
     return render_template("index.html")
-"""
+
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5050))
@@ -295,7 +295,7 @@ def admin_student_detail(survey_id: int):
 # ============================================================
 @app.get("/employer")
 def employer_form():
-    return render_template("form_employer.html")
+    return render_template("form_employer")
 
 
 @app.post("/employer/submit")
