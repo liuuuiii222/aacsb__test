@@ -33,7 +33,7 @@ def home():
 # Student Routes  
 # =========================  
 @app.get("/student")  
-def student_form():  
+def form_student():  
     return render_template("form_student.html")  
 @app.post("/student/submit")  
 def student_submit():  
@@ -200,7 +200,7 @@ def admin_student_detail(survey_id: int):
 # Employer Routes  
 # =========================  
 @app.get("/employer")  
-def employer_form():  
+def form_employer():  
     return render_template("form_employer.html")  
 @app.post("/employer/submit")  
 def employer_submit():  
