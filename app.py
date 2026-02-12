@@ -8,7 +8,7 @@ import asyncio
 import os  
 import pymysql  
 # 用 Chromium 列印 PDF（保留 detail 排版）  
-from playwright.async_api import async_playwright  
+#from playwright.async_api import async_playwright  
 app = Flask(__name__)  
 # =========================  
 # 資料庫連線（Zeabur 環境變數）  
@@ -381,47 +381,7 @@ def admin_employer_detail(survey_id: int):
 # ============================================================  
 # PDF Export（學生/雇主）— 用 Chromium 列印  
 # ============================================================  
-async def _render_urls_to_single_pdf(urls):  
-    """  
-    把多個 URL 的頁面列印成 PDF，合併為一份（每個 URL 之間自動分頁）  
-    """  
-    frames = []  
-    for u in urls:  
-        frames.append(f"""  
-          <div class="wrap">  
-            <iframe src="{u}" class="frame"></iframe>  
-          </div>  
-          <div class="pb"></div>  
-        """)  
-    shell_html = f"""  
-    <!doctype html>  
-    <html><head>  
-      <meta charset="utf-8">  
-      <style>  
-        html,body{{margin:0;padding:0;}}  
-        .frame{{width:100%; height:1300px; border:0;}}  
-        .pb{{page-break-after:always;}}  
-        @media print {{  
-          .pb{{page-break-after:always;}}  
-        }}  
-      </style>  
-    </head>  
-    <body>  
-      {''.join(frames)}  
-    </body></html>  
-    """  
-    async with async_playwright() as p:  
-        browser = await p.chromium.launch()  
-        page = await browser.new_page()  
-        await page.set_content(shell_html, wait_until="load")  
-        await page.wait_for_timeout(800)  
-        pdf_bytes = await page.pdf(  
-            format="A4",  
-            print_background=True,  
-            margin={"top": "12mm", "bottom": "12mm", "left": "12mm", "right": "12mm"},  
-        )  
-        await browser.close()  
-        return pdf_bytes  
+"""
 @app.post("/admin/student/export_pdf")  
 def admin_student_export_pdf():  
     ids = request.form.getlist("ids")  
@@ -451,7 +411,7 @@ def admin_employer_export_pdf():
         mimetype="application/pdf",  
         as_attachment=True,  
         download_name="employer_surveys_selected.pdf"  
-    )  
+    )  """
 # =========================  
 # Zeabur 必備啟動設定  
 # =========================  
