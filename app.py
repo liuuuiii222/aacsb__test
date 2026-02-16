@@ -166,7 +166,7 @@ def student_submit():
 def admin_student_list():  
     conn = get_conn()  
     try:  
-        cur = conn.cursor(dictionary=True)  
+        cur = conn.cursor()  
         cur.execute("""  
             SELECT student_survey_id, student_id, student_name, class_name, internship_org, submitted_at  
             FROM student_satisfaction_survey  
@@ -182,7 +182,7 @@ def admin_student_list():
 def admin_student_detail(survey_id: int):  
     conn = get_conn()  
     try:  
-        cur = conn.cursor(dictionary=True)  
+        cur = conn.cursor()  
         cur.execute("SELECT * FROM student_satisfaction_survey WHERE student_survey_id=%s", (survey_id,))  
         survey = cur.fetchone()  
         if not survey:  
@@ -312,7 +312,7 @@ def employer_submit():
 def admin_employer_list():  
     conn = get_conn()  
     try:  
-        cur = conn.cursor(dictionary=True)  
+        cur = conn.cursor()  
         cur.execute("""  
             SELECT employer_survey_id, company_name, job_title, industry, created_at  
             FROM employer_satisfaction_survey  
@@ -328,7 +328,7 @@ def admin_employer_list():
 def admin_employer_detail(survey_id: int):  
     conn = get_conn()  
     try:  
-        cur = conn.cursor(dictionary=True)  
+        cur = conn.cursor()  
         cur.execute("""  
             SELECT employer_survey_id, industry, industry_other, company_name, job_title, other_suggestions, created_at  
             FROM employer_satisfaction_survey  
