@@ -230,8 +230,12 @@ def employer_submit():
             return jsonify({"ok": False, "error": f"缺少 course.{k}"}), 400  
     conn = get_conn()  
     cur = conn.cursor()  
+    #conn.begin()
+
     try:  
-        conn.start_transaction()  
+        #conn.start_transaction()  
+        #conn.commit()
+
         cur.execute("""  
             INSERT INTO employer_satisfaction_survey  
             (industry, industry_other, company_name, job_title, other_suggestions)  
